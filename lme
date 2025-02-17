@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>会表白的小猫咪</title>
+    <style>
+        body {
+            background: #ffe6f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+        }
+
+        .cat {
+            width: 150px;
+            height: 150px;
+            background: #ffb3d9;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .ear {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid #ffb3d9;
+            position: absolute;
+            top: -40px;
+        }
+
+        .ear-left { left: -10px; transform: rotate(-30deg); }
+        .ear-right { right: -10px; transform: rotate(30deg); }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            color: #ff4d4d;
+            opacity: 0;
+            animation: heartFloat 2s linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes heartFloat {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+
+        .message {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #ff3366;
+            white-space: nowrap;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cat" onclick="createHeart()">
+            <div class="ear ear-left"></div>
+            <div class="ear ear-right"></div>
+        </div>
+        <div class="message">李敏尔，做我宝宝好吗？🐾</div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'px';
+            document.querySelector('.container').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
